@@ -13,7 +13,7 @@
         <!--Log In View Controller-->
         <scene sceneID="3mS-92-PNY">
             <objects>
-                <viewController id="tnS-yq-G9B" customClass="LogInViewController" customModule="practice_makeChatApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LogInVC" id="tnS-yq-G9B" customClass="LogInViewController" customModule="practice_makeChatApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OxC-kr-dHI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -87,10 +87,37 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="i8r-0z-qGA"/>
                     </view>
+                    <navigationItem key="navigationItem" id="6nc-gg-rqk">
+                        <barButtonItem key="leftBarButtonItem" title="Log Out" id="FZb-IP-OPY">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="logoutDidTapped:" destination="6f4-L6-YZ1" id="MM9-bO-uQ5"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xod-1b-ew0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="223" y="142"/>
+            <point key="canvasLocation" x="1031" y="141"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="dIu-4X-BL2">
+            <objects>
+                <navigationController storyboardIdentifier="NavigationVC" automaticallyAdjustsScrollViewInsets="NO" id="cDI-HP-fOz" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="2XO-L4-rOk">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.14901960784313725" green="0.26666666666666666" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="6f4-L6-YZ1" kind="relationship" relationship="rootViewController" id="Buu-OX-wM1"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kWk-QM-Wde" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="222.40000000000001" y="141.22938530734635"/>
         </scene>
     </scenes>
     <resources>

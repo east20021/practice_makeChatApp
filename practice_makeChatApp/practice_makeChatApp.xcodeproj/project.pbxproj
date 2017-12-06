@@ -76,11 +76,11 @@
 				9B690E121FD549AE00D84A7B /* AppDelegate.swift */,
 				9B690E241FD6B7BA00D84A7B /* LogInViewController.swift */,
 				9B690E261FD6B7E000D84A7B /* ChatViewController.swift */,
-				9B690E491FD7595200D84A7B /* Resources */,
 				9B690E161FD549AE00D84A7B /* Main.storyboard */,
 				9B690E191FD549AE00D84A7B /* Assets.xcassets */,
 				9B690E1B1FD549AE00D84A7B /* LaunchScreen.storyboard */,
 				9B690E1E1FD549AE00D84A7B /* Info.plist */,
+				9B690E491FD7595200D84A7B /* Resources */,
 			);
 			path = practice_makeChatApp;
 			sourceTree = "<group>";

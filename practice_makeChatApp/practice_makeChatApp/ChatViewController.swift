@@ -20,16 +20,20 @@ class ChatViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func logoutDidTapped(_ sender: Any) {
+        
+        //Create a main storyboard instance
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        //From main storyboard instantiate a navigation controller
+        let LogInVC = storyboard.instantiateViewController(withIdentifier: "LogInVC") as! LogInViewController
+        
+        //Get the app delegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        
+        //Set Navigation Controller as root view controller
+        appDelegate.window?.rootViewController = LogInVC
     }
-    */
-
+    
 }
