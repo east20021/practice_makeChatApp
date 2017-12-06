@@ -14,6 +14,11 @@
 		9B690E1D1FD549AE00D84A7B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B690E1B1FD549AE00D84A7B /* LaunchScreen.storyboard */; };
 		9B690E251FD6B7BA00D84A7B /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B690E241FD6B7BA00D84A7B /* LogInViewController.swift */; };
 		9B690E271FD6B7E000D84A7B /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B690E261FD6B7E000D84A7B /* ChatViewController.swift */; };
+		9B690E4F1FD7595200D84A7B /* dummyUser.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B690E4A1FD7595200D84A7B /* dummyUser.png */; };
+		9B690E501FD7595200D84A7B /* profileImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B690E4B1FD7595200D84A7B /* profileImage.png */; };
+		9B690E511FD7595200D84A7B /* googleButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B690E4C1FD7595200D84A7B /* googleButton.png */; };
+		9B690E521FD7595200D84A7B /* OrLine.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B690E4D1FD7595200D84A7B /* OrLine.png */; };
+		9B690E531FD7595200D84A7B /* backgroundPhoto.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B690E4E1FD7595200D84A7B /* backgroundPhoto.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +32,11 @@
 		9B690E1E1FD549AE00D84A7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B690E241FD6B7BA00D84A7B /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		9B690E261FD6B7E000D84A7B /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		9B690E4A1FD7595200D84A7B /* dummyUser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dummyUser.png; sourceTree = "<group>"; };
+		9B690E4B1FD7595200D84A7B /* profileImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profileImage.png; sourceTree = "<group>"; };
+		9B690E4C1FD7595200D84A7B /* googleButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = googleButton.png; sourceTree = "<group>"; };
+		9B690E4D1FD7595200D84A7B /* OrLine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OrLine.png; sourceTree = "<group>"; };
+		9B690E4E1FD7595200D84A7B /* backgroundPhoto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundPhoto.png; sourceTree = "<group>"; };
 		A5582A9C4DB8B4207249E9EB /* Pods_practice_makeChatApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_practice_makeChatApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -66,12 +76,25 @@
 				9B690E121FD549AE00D84A7B /* AppDelegate.swift */,
 				9B690E241FD6B7BA00D84A7B /* LogInViewController.swift */,
 				9B690E261FD6B7E000D84A7B /* ChatViewController.swift */,
+				9B690E491FD7595200D84A7B /* Resources */,
 				9B690E161FD549AE00D84A7B /* Main.storyboard */,
 				9B690E191FD549AE00D84A7B /* Assets.xcassets */,
 				9B690E1B1FD549AE00D84A7B /* LaunchScreen.storyboard */,
 				9B690E1E1FD549AE00D84A7B /* Info.plist */,
 			);
 			path = practice_makeChatApp;
+			sourceTree = "<group>";
+		};
+		9B690E491FD7595200D84A7B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9B690E4A1FD7595200D84A7B /* dummyUser.png */,
+				9B690E4B1FD7595200D84A7B /* profileImage.png */,
+				9B690E4C1FD7595200D84A7B /* googleButton.png */,
+				9B690E4D1FD7595200D84A7B /* OrLine.png */,
+				9B690E4E1FD7595200D84A7B /* backgroundPhoto.png */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		CD2E5B6BC5617FD64153F8D9 /* Pods */ = {
@@ -153,9 +176,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B690E531FD7595200D84A7B /* backgroundPhoto.png in Resources */,
 				9B690E1D1FD549AE00D84A7B /* LaunchScreen.storyboard in Resources */,
 				9B690E1A1FD549AE00D84A7B /* Assets.xcassets in Resources */,
+				9B690E511FD7595200D84A7B /* googleButton.png in Resources */,
 				9B690E181FD549AE00D84A7B /* Main.storyboard in Resources */,
+				9B690E501FD7595200D84A7B /* profileImage.png in Resources */,
+				9B690E4F1FD7595200D84A7B /* dummyUser.png in Resources */,
+				9B690E521FD7595200D84A7B /* OrLine.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

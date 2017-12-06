@@ -18,30 +18,64 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m4g-Ls-Cy7">
-                                <rect key="frame" x="145" y="431" width="85" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="google login"/>
-                                <connections>
-                                    <action selector="googleLoginDidTapped:" destination="tnS-yq-G9B" eventType="touchUpInside" id="ue6-Wk-eek"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fMe-Pl-Aeu">
-                                <rect key="frame" x="115" y="245" width="134" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Login Anonymously"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundPhoto.png" translatesAutoresizingMaskIntoConstraints="NO" id="5yS-rg-vVJ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fMe-Pl-Aeu">
+                                <rect key="frame" x="44" y="251" width="287" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="287" id="G6d-qc-dUO"/>
+                                    <constraint firstAttribute="height" constant="36" id="LBx-gI-mxp"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Login Anonymously">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="loginAnonymouslyDidTapped:" destination="tnS-yq-G9B" eventType="touchUpInside" id="Tfl-cW-E3L"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m4g-Ls-Cy7">
+                                <rect key="frame" x="167" y="383" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Kw8-t9-xir"/>
+                                    <constraint firstAttribute="width" constant="40" id="oQj-r1-47b"/>
+                                </constraints>
+                                <state key="normal" image="googleButton.png"/>
+                                <connections>
+                                    <action selector="googleLoginDidTapped:" destination="tnS-yq-G9B" eventType="touchUpInside" id="ue6-Wk-eek"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="OrLine.png" translatesAutoresizingMaskIntoConstraints="NO" id="sti-Xc-B4o">
+                                <rect key="frame" x="44" y="325" width="287" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="16" id="42p-IQ-lCv"/>
+                                    <constraint firstAttribute="width" constant="287" id="kAy-Xf-zVR"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="5yS-rg-vVJ" firstAttribute="top" secondItem="OxC-kr-dHI" secondAttribute="top" id="M6t-4L-8Jq"/>
+                            <constraint firstItem="m4g-Ls-Cy7" firstAttribute="top" secondItem="sti-Xc-B4o" secondAttribute="bottom" constant="42" id="RAa-F9-ocr"/>
+                            <constraint firstItem="m4g-Ls-Cy7" firstAttribute="centerX" secondItem="OxC-kr-dHI" secondAttribute="centerX" id="Tqq-Qx-14c"/>
+                            <constraint firstItem="5yS-rg-vVJ" firstAttribute="trailing" secondItem="nGG-xl-Iar" secondAttribute="trailing" id="Ynt-im-i9c"/>
+                            <constraint firstItem="5yS-rg-vVJ" firstAttribute="leading" secondItem="nGG-xl-Iar" secondAttribute="leading" id="Yuy-lZ-Laf"/>
+                            <constraint firstItem="nGG-xl-Iar" firstAttribute="bottom" secondItem="m4g-Ls-Cy7" secondAttribute="bottom" constant="244" id="bd5-Gw-70Y"/>
+                            <constraint firstItem="fMe-Pl-Aeu" firstAttribute="centerX" secondItem="OxC-kr-dHI" secondAttribute="centerX" id="dDN-RL-J2M"/>
+                            <constraint firstItem="sti-Xc-B4o" firstAttribute="top" secondItem="fMe-Pl-Aeu" secondAttribute="bottom" constant="38" id="rf2-OM-rZV"/>
+                            <constraint firstItem="sti-Xc-B4o" firstAttribute="centerX" secondItem="OxC-kr-dHI" secondAttribute="centerX" id="s7k-xv-ttf"/>
+                            <constraint firstItem="5yS-rg-vVJ" firstAttribute="bottom" secondItem="nGG-xl-Iar" secondAttribute="bottom" id="sgm-Hc-YKC"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="nGG-xl-Iar"/>
                     </view>
+                    <connections>
+                        <outlet property="anonymousButton" destination="fMe-Pl-Aeu" id="MBe-Zv-qiw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xRI-QW-c4y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-553" y="141"/>
+            <point key="canvasLocation" x="-554.39999999999998" y="139.880059970015"/>
         </scene>
         <!--Chat View Controller-->
         <scene sceneID="zuC-QW-Ncw">
@@ -59,4 +93,9 @@
             <point key="canvasLocation" x="223" y="142"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="OrLine.png" width="864" height="45"/>
+        <image name="backgroundPhoto.png" width="1125" height="2001"/>
+        <image name="googleButton.png" width="120" height="120"/>
+    </resources>
 </document>
