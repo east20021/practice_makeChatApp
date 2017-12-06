@@ -20,6 +20,7 @@
 		9B690E521FD7595200D84A7B /* OrLine.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B690E4D1FD7595200D84A7B /* OrLine.png */; };
 		9B690E531FD7595200D84A7B /* backgroundPhoto.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B690E4E1FD7595200D84A7B /* backgroundPhoto.png */; };
 		9BA2F3E91FD7CD370032FC19 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9BA2F3E81FD7CD370032FC19 /* GoogleService-Info.plist */; };
+		9BA2F3EB1FD7EEA30032FC19 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA2F3EA1FD7EEA30032FC19 /* Helper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		9B690E4D1FD7595200D84A7B /* OrLine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OrLine.png; sourceTree = "<group>"; };
 		9B690E4E1FD7595200D84A7B /* backgroundPhoto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundPhoto.png; sourceTree = "<group>"; };
 		9BA2F3E81FD7CD370032FC19 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9BA2F3EA1FD7EEA30032FC19 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		A5582A9C4DB8B4207249E9EB /* Pods_practice_makeChatApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_practice_makeChatApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -77,6 +79,7 @@
 			children = (
 				9B690E121FD549AE00D84A7B /* AppDelegate.swift */,
 				9B690E241FD6B7BA00D84A7B /* LogInViewController.swift */,
+				9BA2F3EA1FD7EEA30032FC19 /* Helper.swift */,
 				9B690E261FD6B7E000D84A7B /* ChatViewController.swift */,
 				9B690E161FD549AE00D84A7B /* Main.storyboard */,
 				9B690E191FD549AE00D84A7B /* Assets.xcassets */,
@@ -259,6 +262,7 @@
 				9B690E251FD6B7BA00D84A7B /* LogInViewController.swift in Sources */,
 				9B690E271FD6B7E000D84A7B /* ChatViewController.swift in Sources */,
 				9B690E131FD549AE00D84A7B /* AppDelegate.swift in Sources */,
+				9BA2F3EB1FD7EEA30032FC19 /* Helper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
