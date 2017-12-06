@@ -6,5 +6,5 @@ target 'practice_makeChatApp' do
   use_frameworks!
 
   # Pods for practice_makeChatApp
-
+pod 'Firebase/Core'
 end

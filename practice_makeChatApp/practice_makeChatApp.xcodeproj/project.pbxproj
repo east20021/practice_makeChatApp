@@ -19,6 +19,7 @@
 		9B690E511FD7595200D84A7B /* googleButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B690E4C1FD7595200D84A7B /* googleButton.png */; };
 		9B690E521FD7595200D84A7B /* OrLine.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B690E4D1FD7595200D84A7B /* OrLine.png */; };
 		9B690E531FD7595200D84A7B /* backgroundPhoto.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B690E4E1FD7595200D84A7B /* backgroundPhoto.png */; };
+		9BA2F3E91FD7CD370032FC19 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9BA2F3E81FD7CD370032FC19 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		9B690E4C1FD7595200D84A7B /* googleButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = googleButton.png; sourceTree = "<group>"; };
 		9B690E4D1FD7595200D84A7B /* OrLine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OrLine.png; sourceTree = "<group>"; };
 		9B690E4E1FD7595200D84A7B /* backgroundPhoto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundPhoto.png; sourceTree = "<group>"; };
+		9BA2F3E81FD7CD370032FC19 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A5582A9C4DB8B4207249E9EB /* Pods_practice_makeChatApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_practice_makeChatApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -80,6 +82,7 @@
 				9B690E191FD549AE00D84A7B /* Assets.xcassets */,
 				9B690E1B1FD549AE00D84A7B /* LaunchScreen.storyboard */,
 				9B690E1E1FD549AE00D84A7B /* Info.plist */,
+				9BA2F3E81FD7CD370032FC19 /* GoogleService-Info.plist */,
 				9B690E491FD7595200D84A7B /* Resources */,
 			);
 			path = practice_makeChatApp;
@@ -178,6 +181,7 @@
 			files = (
 				9B690E531FD7595200D84A7B /* backgroundPhoto.png in Resources */,
 				9B690E1D1FD549AE00D84A7B /* LaunchScreen.storyboard in Resources */,
+				9BA2F3E91FD7CD370032FC19 /* GoogleService-Info.plist in Resources */,
 				9B690E1A1FD549AE00D84A7B /* Assets.xcassets in Resources */,
 				9B690E511FD7595200D84A7B /* googleButton.png in Resources */,
 				9B690E181FD549AE00D84A7B /* Main.storyboard in Resources */,
@@ -214,9 +218,14 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-practice_makeChatApp/Pods-practice_makeChatApp-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
