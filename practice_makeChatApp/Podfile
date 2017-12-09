@@ -8,4 +8,5 @@ target 'practice_makeChatApp' do
   # Pods for practice_makeChatApp
 pod 'Firebase'
 pod 'Firebase/Auth'
+pod 'GoogleSignIn'
 end

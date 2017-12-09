@@ -9,6 +9,8 @@
 import Foundation
 import FirebaseAuth
 import UIKit
+import GoogleSignIn
+import Firebase
 
 class Helper {
     static let helper = Helper()
@@ -20,19 +22,38 @@ class Helper {
         
         Auth.auth().signInAnonymously{ (user, error) in
             if error == nil {
+                
                 print("UserID: \(user!.uid)")
-                
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let naviVC = storyboard.instantiateViewController(withIdentifier: "NavigationVC") as! UINavigationController
-                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                appDelegate.window?.rootViewController = naviVC
-                
+                self.switchToNavigationViewController()
             } else {
                 print(error!.localizedDescription)
                 return
             }
         }
-        
     }
+    
+    func logInWithGoogle(authentication: GIDAuthentication) {
+        
+        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
+        
+        Auth.auth().signIn(with: credential) {(user, error) in
+            if error != nil {
+                print(error!.localizedDescription)
+                return
+            } else {
+                print(user?.email)
+                print(user?.displayName)
+                
+                self.switchToNavigationViewController()
+            }
+        }
+    }
+    private func switchToNavigationViewController() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let naviVC = storyboard.instantiateViewController(withIdentifier: "NavigationVC") as! UINavigationController
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window?.rootViewController = naviVC
+    }
+    
     
 }

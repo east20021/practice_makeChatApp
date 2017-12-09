@@ -7,9 +7,9 @@
 //
 
 import UIKit
-import FirebaseAuth
+import GoogleSignIn
 
-class LogInViewController: UIViewController {
+class LogInViewController: UIViewController , GIDSignInUIDelegate, GIDSignInDelegate {
 
     @IBOutlet weak var anonymousButton: UIButton!
     
@@ -19,6 +19,10 @@ class LogInViewController: UIViewController {
         // Do any additional setup after loading the view.
         anonymousButton.layer.borderWidth = 2.0
         anonymousButton.layer.borderColor = UIColor.white.cgColor
+        
+        GIDSignIn.sharedInstance().clientID = "222404520984-2i76eie76ocjrpvre5f4jj41s84ntmuj.apps.googleusercontent.com"
+        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,31 +38,17 @@ class LogInViewController: UIViewController {
     
     @IBAction func googleLoginDidTapped(_ sender: Any) {
         print("google login did tapped")
-        
-        //Create a main storyboard instance
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
-        //From main storyboard instantiate a navigation controller
-        let naviVC = storyboard.instantiateViewController(withIdentifier: "NavigationVC") as! UINavigationController
-        
-        //Get the app delegate
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        
-        
-        //Set Navigation Controller as root view controller
-        appDelegate.window?.rootViewController = naviVC
-        
+        GIDSignIn.sharedInstance().signIn()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        
+        if error != nil {
+            print(error.localizedDescription)
+            return
+        }
+        print(user.authentication)
+        Helper.helper.logInWithGoogle(authentication: user.authentication)
     }
-    */
 
 }
