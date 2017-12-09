@@ -32,6 +32,9 @@ class ChatViewController: JSQMessagesViewController {
     
     override func didPressAccessoryButton(_ sender: UIButton!) {
         print("didPressAccessoryButton")
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        self.present(imagePicker, animated: true, completion: nil)
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageDataForItemAt indexPath: IndexPath!) -> JSQMessageData! {
@@ -40,7 +43,7 @@ class ChatViewController: JSQMessagesViewController {
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAt indexPath: IndexPath!) -> JSQMessageBubbleImageDataSource! {
         let bubbleFactory = JSQMessagesBubbleImageFactory()
-        return bubbleFactory?.outgoingMessagesBubbleImage(with: UIColor.yellow)
+        return bubbleFactory?.outgoingMessagesBubbleImage(with: UIColor.black)
     }
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAt indexPath: IndexPath!) -> JSQMessageAvatarImageDataSource! {
         return nil
@@ -56,10 +59,7 @@ class ChatViewController: JSQMessagesViewController {
         return cell
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+
     @IBAction func logoutDidTapped(_ sender: Any) {
         
         //Create a main storyboard instance
@@ -76,4 +76,19 @@ class ChatViewController: JSQMessagesViewController {
         appDelegate.window?.rootViewController = LogInVC
     }
     
+}
+
+extension ChatViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        print("did finish picking")
+        //get image
+        print(info)
+        let picture = info[UIImagePickerControllerOriginalImage] as? UIImage
+        let photo = JSQPhotoMediaItem(image: picture)
+
+        message.append(JSQMessage(senderId: senderId, displayName: senderDisplayName, media: photo))
+        self.dismiss(animated: true, completion: nil)
+        collectionView.reloadData()
+        
+    }
 }
