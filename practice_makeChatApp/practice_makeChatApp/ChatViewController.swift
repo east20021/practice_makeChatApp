@@ -9,9 +9,10 @@
 import UIKit
 import JSQMessagesViewController
 import MobileCoreServices
+import AVKit
 
 class ChatViewController: JSQMessagesViewController {
-    var message = [JSQMessage]()
+    var messages = [JSQMessage]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,9 +27,9 @@ class ChatViewController: JSQMessagesViewController {
         print("\(text)")
         print(senderId)
         print(senderDisplayName)
-        message.append(JSQMessage(senderId: senderId, displayName: senderDisplayName, text: text))
+        messages.append(JSQMessage(senderId: senderId, displayName: senderDisplayName, text: text))
         collectionView.reloadData()
-        print(message)
+        print(messages)
     }
     
     override func didPressAccessoryButton(_ sender: UIButton!) {
@@ -68,7 +69,7 @@ class ChatViewController: JSQMessagesViewController {
     
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageDataForItemAt indexPath: IndexPath!) -> JSQMessageData! {
-        return message[indexPath.item]
+        return messages[indexPath.item]
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAt indexPath: IndexPath!) -> JSQMessageBubbleImageDataSource! {
@@ -80,13 +81,26 @@ class ChatViewController: JSQMessagesViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("number of message : \(message.count)")
-        return message.count
+        print("number of message : \(messages.count)")
+        return messages.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = super.collectionView(collectionView, cellForItemAt: indexPath) as! JSQMessagesCollectionViewCell
         return cell
+    }
+    
+    override func collectionView(_ collectionView: JSQMessagesCollectionView!, didTapMessageBubbleAt indexPath: IndexPath!) {
+        print("didtapMessageBubbleAtIndexPath: \(indexPath.item)")
+        let message = messages[indexPath.item]
+        if message.isMediaMessage {
+            if let mediaItem = message.media as? JSQVideoMediaItem {
+                let player = AVPlayer(url: mediaItem.fileURL)
+                let playerViewController = AVPlayerViewController()
+                playerViewController.player = player
+                self.present(playerViewController, animated: true, completion: nil)
+            }
+        }
     }
 
 
@@ -116,11 +130,11 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
         
         if let picture = info[UIImagePickerControllerOriginalImage] as? UIImage {
             let photo = JSQPhotoMediaItem(image: picture)
-            message.append(JSQMessage(senderId: senderId, displayName: senderDisplayName, media: photo))
+            messages.append(JSQMessage(senderId: senderId, displayName: senderDisplayName, media: photo))
         }
         else if let video = info[UIImagePickerControllerMediaURL] as? NSURL {
             let videoItem = JSQVideoMediaItem(fileURL: video as URL!, isReadyToPlay: true)
-            message.append(JSQMessage(senderId: senderId, displayName: senderDisplayName, media: videoItem))
+            messages.append(JSQMessage(senderId: senderId, displayName: senderDisplayName, media: videoItem))
         }
         
         self.dismiss(animated: true, completion: nil)
