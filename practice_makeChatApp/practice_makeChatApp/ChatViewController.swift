@@ -30,20 +30,19 @@ class ChatViewController: JSQMessagesViewController {
     
 //        messageRef.childByAutoId().setValue("first message")
 //        messageRef.childByAutoId().setValue("second message")
-        messageRef.observe(DataEventType.value) { (snapshot: DataSnapshot) in
-            print(snapshot.value)
-            if let dict = snapshot.value as? NSDictionary {
-                print(dict)
-            }
-        }
+//        messageRef.observe(DataEventType.value) { (snapshot: DataSnapshot) in
+//            print("test")
+//            if let dict = snapshot.value as? NSDictionary {
+//                print(dict)
+//            }
+//        }
         
     }
     
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
-        print("didPressSendButton")
-        print("\(text)")
-        print(senderId)
-        print(senderDisplayName)
+    
+        
+        
         messages.append(JSQMessage(senderId: senderId, displayName: senderDisplayName, text: text))
         collectionView.reloadData()
         print(messages)
