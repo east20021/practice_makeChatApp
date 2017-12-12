@@ -10,6 +10,7 @@ import UIKit
 import JSQMessagesViewController
 import MobileCoreServices
 import AVKit
+import FirebaseDatabase
 
 class ChatViewController: JSQMessagesViewController {
     var messages = [JSQMessage]()
@@ -21,7 +22,23 @@ class ChatViewController: JSQMessagesViewController {
         self.senderDisplayName = "smith"
 
         // Do any additional setup after loading the view.
+        
+        let rootRef = Database.database().reference()
+        let messageRef = rootRef.child("messages")
+        print(rootRef)
+        print(messageRef)
+    
+//        messageRef.childByAutoId().setValue("first message")
+//        messageRef.childByAutoId().setValue("second message")
+        messageRef.observe(DataEventType.value) { (snapshot: DataSnapshot) in
+            print(snapshot.value)
+            if let dict = snapshot.value as? NSDictionary {
+                print(dict)
+            }
+        }
+        
     }
+    
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
         print("didPressSendButton")
         print("\(text)")
