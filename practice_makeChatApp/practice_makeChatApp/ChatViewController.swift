@@ -157,6 +157,14 @@ class ChatViewController: JSQMessagesViewController {
 
     @IBAction func logoutDidTapped(_ sender: Any) {
         
+        do {
+           try Auth.auth().signOut()
+        } catch let error {
+            print(error)
+        }
+        
+        print(Auth.auth().currentUser)
+        
         //Create a main storyboard instance
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         

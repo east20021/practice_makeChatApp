@@ -8,6 +8,7 @@
 
 import UIKit
 import GoogleSignIn
+import FirebaseAuth
 
 class LogInViewController: UIViewController , GIDSignInUIDelegate, GIDSignInDelegate {
 
@@ -23,6 +24,20 @@ class LogInViewController: UIViewController , GIDSignInUIDelegate, GIDSignInDele
         GIDSignIn.sharedInstance().clientID = "222404520984-2i76eie76ocjrpvre5f4jj41s84ntmuj.apps.googleusercontent.com"
         GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().delegate = self
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print(Auth.auth().currentUser)
+        
+        Auth.auth().addStateDidChangeListener({ (auth: Auth, user: User?) in
+            if user != nil {
+                print(user)
+                Helper.helper.switchToNavigationViewController()
+            } else {
+                print("Unauthorized")
+            }
+        })
     }
 
     override func didReceiveMemoryWarning() {
