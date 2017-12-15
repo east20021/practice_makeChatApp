@@ -22,7 +22,8 @@ class ChatViewController: JSQMessagesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.senderId = "1"
+        let currentUser = Auth.auth().currentUser
+        self.senderId = currentUser?.uid
         self.senderDisplayName = "smith"
 
         // Do any additional setup after loading the view.
@@ -59,11 +60,24 @@ class ChatViewController: JSQMessagesViewController {
                         let picture = UIImage(data: data! as Data)
                         let photo = JSQPhotoMediaItem(image: picture)
                         self.messages.append(JSQMessage(senderId: senderId, displayName: senderName, media: photo))
+                    
+                        if self.senderId == senderId {
+                            photo?.appliesMediaViewMaskAsOutgoing = true
+                        } else {
+                            photo?.appliesMediaViewMaskAsOutgoing = false
+                        }
+                    
                     case "VIDEO":
                         let fileUrl = dict["fileUrl"] as! String
                         let video = URL(string: fileUrl)
                         let videoItem = JSQVideoMediaItem(fileURL: video, isReadyToPlay: true)
                         self.messages.append(JSQMessage(senderId: senderId, displayName: senderName, media: videoItem))
+                    
+                        if self.senderId == senderId {
+                            videoItem?.appliesMediaViewMaskAsOutgoing = true
+                        } else {
+                            videoItem?.appliesMediaViewMaskAsOutgoing = false
+                    }
                     default:
                         print("unknown data type")
                     
@@ -81,6 +95,7 @@ class ChatViewController: JSQMessagesViewController {
         let newMessage = messageRef.childByAutoId()
         let messageData = ["text": text, "senderId": senderId, "senderName": senderDisplayName, "MediaType": "TEXT"]
         newMessage.setValue(messageData)
+        self.finishSendingMessage()
     }
     
     override func didPressAccessoryButton(_ sender: UIButton!) {
@@ -124,8 +139,14 @@ class ChatViewController: JSQMessagesViewController {
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAt indexPath: IndexPath!) -> JSQMessageBubbleImageDataSource! {
+        let message = messages[indexPath.item]
         let bubbleFactory = JSQMessagesBubbleImageFactory()
-        return bubbleFactory?.outgoingMessagesBubbleImage(with: UIColor.black)
+        
+        if message.senderId == self.senderId {
+            return bubbleFactory?.outgoingMessagesBubbleImage(with: UIColor.black)
+        } else {
+            return bubbleFactory?.incomingMessagesBubbleImage(with: UIColor.blue)
+        }
     }
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAt indexPath: IndexPath!) -> JSQMessageAvatarImageDataSource! {
         return nil
@@ -228,13 +249,9 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
         print(info)
         
         if let picture = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            let photo = JSQPhotoMediaItem(image: picture)
-            messages.append(JSQMessage(senderId: senderId, displayName: senderDisplayName, media: photo))
             sendMedia(picture: picture, video: nil)
         }
         else if let video = info[UIImagePickerControllerMediaURL] as? NSURL {
-            let videoItem = JSQVideoMediaItem(fileURL: video as URL!, isReadyToPlay: true)
-            messages.append(JSQMessage(senderId: senderId, displayName: senderDisplayName, media: videoItem))
             sendMedia(picture: nil, video: video)
         }
         
