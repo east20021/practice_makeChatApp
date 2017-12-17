@@ -10,7 +10,7 @@ import Foundation
 import FirebaseAuth
 import UIKit
 import GoogleSignIn
-import Firebase
+import FirebaseDatabase
 
 class Helper {
     static let helper = Helper()
@@ -20,11 +20,14 @@ class Helper {
         //anonymously log users in
         //switch view by setting navigation controller as root view controller
         
-        Auth.auth().signInAnonymously{ (user, error) in
+        Auth.auth().signInAnonymously {(anonymousUser, error) in
             if error == nil {
+                print("UserID: \(anonymousUser!.uid)")
                 
-                print("UserID: \(user!.uid)")
+                let newUser = Database.database().reference().child("users").child((anonymousUser?.uid)!)
+                newUser.setValue(["displayname" : "anonymous", "id" : "\(anonymousUser?.uid)", "profileUrl" : ""])
                 self.switchToNavigationViewController()
+                
             } else {
                 print(error!.localizedDescription)
                 return
@@ -43,6 +46,11 @@ class Helper {
             } else {
                 print(user?.email)
                 print(user?.displayName)
+                print(user?.photoURL)
+                
+                
+                let newUser = Database.database().reference().child("users").child((user?.uid)!)
+                newUser.setValue(["displayname" : "\(user!.displayName!)", "id" : "\(user!.uid)", "profileUrl" : "\(user!.photoURL)"])
                 
                 self.switchToNavigationViewController()
             }
