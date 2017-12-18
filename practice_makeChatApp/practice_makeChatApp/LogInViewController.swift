@@ -28,11 +28,9 @@ class LogInViewController: UIViewController , GIDSignInUIDelegate, GIDSignInDele
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        print(Auth.auth().currentUser)
         
         Auth.auth().addStateDidChangeListener({ (auth: Auth, user: User?) in
             if user != nil {
-                print(user)
                 Helper.helper.switchToNavigationViewController()
             } else {
                 print("Unauthorized")

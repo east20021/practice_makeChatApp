@@ -25,7 +25,7 @@ class Helper {
                 print("UserID: \(anonymousUser!.uid)")
                 
                 let newUser = Database.database().reference().child("users").child((anonymousUser?.uid)!)
-                newUser.setValue(["displayname" : "anonymous", "id" : "\(anonymousUser?.uid)", "profileUrl" : ""])
+                newUser.setValue(["displayname" : "anonymous", "id" : "\(anonymousUser!.uid)", "profileUrl" : ""])
                 self.switchToNavigationViewController()
                 
             } else {
@@ -44,13 +44,12 @@ class Helper {
                 print(error!.localizedDescription)
                 return
             } else {
-                print(user?.email)
-                print(user?.displayName)
-                print(user?.photoURL)
+                print(user?.email as Any)
+                print(user?.displayName as Any)
+                print(user?.photoURL as Any)
                 
-                
-                let newUser = Database.database().reference().child("users").child((user?.uid)!)
-                newUser.setValue(["displayname" : "\(user!.displayName!)", "id" : "\(user!.uid)", "profileUrl" : "\(user!.photoURL)"])
+                let newUser = Database.database().reference().child("users").child(user!.uid)
+                newUser.setValue(["displayname" : "\(user!.displayName!)", "id" : "\(user!.uid)", "profileUrl" : "\(user!.photoURL!)"])
                 
                 self.switchToNavigationViewController()
             }

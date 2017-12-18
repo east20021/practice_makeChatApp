@@ -29,7 +29,7 @@ class ChatViewController: JSQMessagesViewController {
             if currentUser.isAnonymous == true {
                 self.senderDisplayName = "anonymous"
             } else {
-                self.senderDisplayName = "\(currentUser.displayName)"
+                self.senderDisplayName = "\(String(describing: currentUser.displayName))"
             }
         }
         observeMessage()
@@ -37,25 +37,26 @@ class ChatViewController: JSQMessagesViewController {
     
     func observeUser(_ id: String) {
         Database.database().reference().child("users").child(id).observe(.value, with: { snapshot in
-            if let dict = snapshot.value as? [String: AnyObject] {
+            if let dict = snapshot.value as? [String: AnyObject]{
                 let avatarUrl = dict["profileUrl"] as! String
-                self.setupAvatar(url: avatarUrl, messageId: id)
+                self.setupAvatar(url: avatarUrl , messageId: id)
             }
         })
     }
     
     func setupAvatar(url: String, messageId: String) {
-//        if url != "" {
-//            let fileUrl = URL(string: url)
-        
-//            let data = NSData(contentsOf: fileUrl! as! URL)
-//            let image = UIImage(data: data! as Data)
-//            let userImg = JSQMessagesAvatarImageFactory.avatarImage(with: image, diameter: 30)
-//            self.avatarDict[messageId] = userImg
-//        } else {
-//            avatarDict[messageId] = JSQMessagesAvatarImageFactory.avatarImage(with: UIImage(named: "profileImage"), diameter: 30)
-//        }
-        avatarDict[messageId] = JSQMessagesAvatarImageFactory.avatarImage(with: UIImage(named: "profileImage"), diameter: 30)
+        if url != "" {
+           
+            let data = try? Data(contentsOf: URL(string: url)!)
+            let image = UIImage(data: data!)
+            let userImg = JSQMessagesAvatarImageFactory.avatarImage(with: image, diameter: 30)
+            self.avatarDict[messageId] = userImg
+            self.collectionView.reloadData()
+            
+        } else {
+            avatarDict[messageId] = JSQMessagesAvatarImageFactory.avatarImage(with: UIImage(named: "profileImage"), diameter: 30)
+        }
+       
         collectionView.reloadData()
     }
     
@@ -236,8 +237,6 @@ class ChatViewController: JSQMessagesViewController {
             print(error)
         }
         
-        print(Auth.auth().currentUser)
-        
         //Create a main storyboard instance
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
@@ -253,7 +252,6 @@ class ChatViewController: JSQMessagesViewController {
     }
     
     func sendMedia(picture: UIImage?, video: NSURL?) {
-        print(picture)
         print(Storage.storage().reference())
         if let picture = picture {
             let filePath = "\(Auth.auth().currentUser!)/\(NSDate.timeIntervalSinceReferenceDate)"
@@ -263,7 +261,6 @@ class ChatViewController: JSQMessagesViewController {
             metadata.contentType = "image/jpg"
             Storage.storage().reference().child(filePath).putData(data!, metadata: metadata) { (metadata, error) in
                 if error != nil {
-                    print(error?.localizedDescription)
                     return
                 }
                 let fileUrl = metadata!.downloadURLs![0].absoluteString
@@ -280,7 +277,6 @@ class ChatViewController: JSQMessagesViewController {
             metadata.contentType = "video/mp4"
             Storage.storage().reference().child(filePath).putData(data! as Data, metadata: metadata) { (metadata, error) in
                 if error != nil {
-                    print(error?.localizedDescription)
                     return
                 }
                 let fileUrl = metadata!.downloadURLs![0].absoluteString
