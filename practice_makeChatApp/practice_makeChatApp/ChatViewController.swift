@@ -44,15 +44,16 @@ class ChatViewController: JSQMessagesViewController {
     }
     
     func setupAvatar(url: String, messageId: String) {
-        if url != "" {
-            let fileUrl = URL(string: url)!
-            let data = try! Data(contentsOf: fileUrl)
-            let image = UIImage(data: data)
-            let userImg = JSQMessagesAvatarImageFactory.avatarImage(with: image, diameter: 30)
-            self.avatarDict[messageId] = userImg
-        } else {
-            avatarDict[messageId] = JSQMessagesAvatarImageFactory.avatarImage(with: UIImage(named: "profileImage"), diameter: 30)
-        }
+//        if url != "" {
+//            let fileUrl = URL(string: url)
+//            let data = NSData(contentsOf: fileUrl! as! URL)
+//            let image = UIImage(data: data! as Data)
+//            let userImg = JSQMessagesAvatarImageFactory.avatarImage(with: image, diameter: 30)
+//            self.avatarDict[messageId] = userImg
+//        } else {
+//            avatarDict[messageId] = JSQMessagesAvatarImageFactory.avatarImage(with: UIImage(named: "profileImage"), diameter: 30)
+//        }
+        avatarDict[messageId] = JSQMessagesAvatarImageFactory.avatarImage(with: UIImage(named: "profileImage"), diameter: 30)
         collectionView.reloadData()
     }
     
