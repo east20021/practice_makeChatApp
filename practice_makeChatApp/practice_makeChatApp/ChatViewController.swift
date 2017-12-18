@@ -13,6 +13,7 @@ import AVKit
 import FirebaseDatabase
 import FirebaseStorage
 import FirebaseAuth
+import SDWebImage
 
 class ChatViewController: JSQMessagesViewController {
     var messages = [JSQMessage]()
@@ -46,6 +47,7 @@ class ChatViewController: JSQMessagesViewController {
     func setupAvatar(url: String, messageId: String) {
 //        if url != "" {
 //            let fileUrl = URL(string: url)
+        
 //            let data = NSData(contentsOf: fileUrl! as! URL)
 //            let image = UIImage(data: data! as Data)
 //            let userImg = JSQMessagesAvatarImageFactory.avatarImage(with: image, diameter: 30)
@@ -66,17 +68,45 @@ class ChatViewController: JSQMessagesViewController {
                 
                 self.observeUser(senderId)
                 
+                
                 switch mediaType {
                     case "TEXT":
                         let text = dict["text"] as! String
                         self.messages.append(JSQMessage(senderId: senderId, displayName: senderName, text: text))
+                    
+                    
                     case "PHOTO":
+//                        var photo = JSQPhotoMediaItem(image: nil)
+//                        let fileUrl = dict["fileUrl"] as! String
+//                        let url = URL(string: fileUrl)
+//
+//                        if let cachePhoto = (self.photoCache.object(forKey: fileUrl as AnyObject) as? JSQPhotoMediaItem) {
+//                            photo = cachePhoto
+//                            self.collectionView.reloadData()
+//                        } else {
+//                            DispatchQueue.global(qos: .userInteractive).async {
+//                                let data = NSData(contentsOf: url!)
+//                                DispatchQueue.main.async {
+//                                    let picture = UIImage(data: data! as Data)
+//                                    photo?.image = picture
+//                                    self.collectionView.reloadData()
+//                                    self.photoCache.setObject(photo!, forKey: fileUrl as AnyObject)
+//                                    print("1")
+//                                }
+//                            }
+//                        }
+                        let photo = JSQPhotoMediaItem(image: nil)
                         let fileUrl = dict["fileUrl"] as! String
-                        let url = URL(string: fileUrl)
-                        let data = NSData(contentsOf: url!)
-                        let picture = UIImage(data: data! as Data)
-                        let photo = JSQPhotoMediaItem(image: picture)
+                        let downloader = SDWebImageDownloader.shared()
+                        downloader.downloadImage(with: URL(string: fileUrl), options: [], progress: nil, completed: { ( image, data, error, finished) in
+                            DispatchQueue.main.async {
+                                photo?.image = image
+                                self.collectionView.reloadData()
+                            }
+
+                        })
                         self.messages.append(JSQMessage(senderId: senderId, displayName: senderName, media: photo))
+                       
                     
                         if self.senderId == senderId {
                             photo?.appliesMediaViewMaskAsOutgoing = true
@@ -89,6 +119,7 @@ class ChatViewController: JSQMessagesViewController {
                         let video = URL(string: fileUrl)
                         let videoItem = JSQVideoMediaItem(fileURL: video, isReadyToPlay: true)
                         self.messages.append(JSQMessage(senderId: senderId, displayName: senderName, media: videoItem))
+                        
                     
                         if self.senderId == senderId {
                             videoItem?.appliesMediaViewMaskAsOutgoing = true
